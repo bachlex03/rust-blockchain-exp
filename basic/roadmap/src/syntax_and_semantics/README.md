@@ -34,6 +34,9 @@
 
 **Integer Types**
 
+- Integers Overflow
+- term: `panicking`
+
 **Floating Point**
 
 **Number**
@@ -43,3 +46,29 @@
 **Characters**
 
 ### 3.2. Compound types
+
+**Tuples**
+
+- destructuring
+- (.) index
+- `unit` (tuple without any value)
+
+- **Arrays**
+
+- stack and heap (chapter 4)
+- vector (chapter 8)
+
+#### Numeric operation
+
+- add
+- subtract
+- multiplication
+- division
+- remainder
+
+ref: `https://doc.rust-lang.org/book/ch03-02-data-types.html#numeric-operations`
+ref: `https://doc.rust-lang.org/book/appendix-02-operators.html#appendix-b-operators-and-symbols` (advance)
+
+#### Unrecoverable (section 9)
+
+ref: `https://doc.rust-lang.org/book/ch09-01-unrecoverable-errors-with-panic.html#unrecoverable-errors-with-panic`
