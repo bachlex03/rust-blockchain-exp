@@ -36,6 +36,7 @@
 
 - Integers Overflow
 - term: `panicking`
+- Two'complement (ref: `https://en.wikipedia.org/wiki/Two%27s_complement`)
 
 **Floating Point**
 
@@ -72,3 +73,7 @@ ref: `https://doc.rust-lang.org/book/appendix-02-operators.html#appendix-b-opera
 #### Unrecoverable (section 9)
 
 ref: `https://doc.rust-lang.org/book/ch09-01-unrecoverable-errors-with-panic.html#unrecoverable-errors-with-panic`
+
+## 4. Control Flows
+
+- match (Chapter 6)
