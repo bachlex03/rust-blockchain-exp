@@ -189,14 +189,23 @@ fn demonstrate_variables_in_patterns() {
     println!();
 
     // Using @ to bind and match
-    let point = (3, 5);
-    match point {
-        (x @ 0..=5, y @ 0..=5) => {
-            println!("   Point ({}, {}) is in range [0-5, 0-5]", x, y);
+    println!("   @ Bindings - bind value while testing pattern:");
+    
+    #[derive(Debug)]
+    enum Message2 {
+        Hello { id: i32 },
+    }
+    
+    let msg = Message2::Hello { id: 5 };
+    
+    match msg {
+        Message2::Hello { id: id @ 3..=7 } => {
+            println!("   Found an id in range: {}", id);
         }
-        (x, y) => {
-            println!("   Point ({}, {}) is outside range", x, y);
+        Message2::Hello { id: 10..=12 } => {
+            println!("   Found an id in another range");
         }
+        Message2::Hello { id } => println!("   Found some other id: {}", id),
     }
     println!();
 }
@@ -224,9 +233,34 @@ fn demonstrate_wildcards() {
     }
     println!();
 
+    // Using .. to ignore remaining parts
+    println!("   Using .. to ignore remaining parts:");
+    
+    #[allow(dead_code)]
+    struct Point3D {
+        x: i32,
+        y: i32,
+        z: i32,
+    }
+    
+    let origin = Point3D { x: 0, y: 0, z: 0 };
+    
+    match origin {
+        Point3D { x, .. } => println!("   x is {} (y and z ignored with ..)", x),
+    }
+    
+    let numbers = (2, 4, 8, 16, 32);
+    match numbers {
+        (first, .., last) => {
+            println!("   First: {}, Last: {} (middle ignored with ..)", first, last);
+        }
+    }
+    println!();
+
     // Ignoring unused variables with _
     let _unused = 5; // Prefix with _ to avoid unused variable warning
-    println!("   Prefix unused variables with _ to avoid warnings\n");
+    println!("   Prefix unused variables with _ to avoid warnings");
+    println!("   Note: _x binds value, _ doesn't bind at all\n");
 }
 
 // Multiple patterns with |
@@ -240,6 +274,24 @@ fn demonstrate_multiple_patterns() {
         1 | 2 | 3 => println!("   number is 1, 2, or 3"),
         4 | 5 => println!("   number is 4 or 5"),
         _ => println!("   number is something else"),
+    }
+    println!();
+
+    // Matching ranges with ..=
+    println!("   Matching ranges with ..=:");
+    let x = 5;
+    
+    match x {
+        1..=5 => println!("   {} is in range 1 through 5", x),
+        _ => println!("   {} is something else", x),
+    }
+    
+    // Ranges work with char too
+    let letter = 'c';
+    match letter {
+        'a'..='j' => println!("   '{}' is an early ASCII letter", letter),
+        'k'..='z' => println!("   '{}' is a late ASCII letter", letter),
+        _ => println!("   '{}' is something else", letter),
     }
     println!();
 
