@@ -190,14 +190,14 @@ fn demonstrate_variables_in_patterns() {
 
     // Using @ to bind and match
     println!("   @ Bindings - bind value while testing pattern:");
-    
+
     #[derive(Debug)]
     enum Message2 {
         Hello { id: i32 },
     }
-    
+
     let msg = Message2::Hello { id: 5 };
-    
+
     match msg {
         Message2::Hello { id: id @ 3..=7 } => {
             println!("   Found an id in range: {}", id);
@@ -235,24 +235,27 @@ fn demonstrate_wildcards() {
 
     // Using .. to ignore remaining parts
     println!("   Using .. to ignore remaining parts:");
-    
+
     #[allow(dead_code)]
     struct Point3D {
         x: i32,
         y: i32,
         z: i32,
     }
-    
+
     let origin = Point3D { x: 0, y: 0, z: 0 };
-    
+
     match origin {
         Point3D { x, .. } => println!("   x is {} (y and z ignored with ..)", x),
     }
-    
+
     let numbers = (2, 4, 8, 16, 32);
     match numbers {
         (first, .., last) => {
-            println!("   First: {}, Last: {} (middle ignored with ..)", first, last);
+            println!(
+                "   First: {}, Last: {} (middle ignored with ..)",
+                first, last
+            );
         }
     }
     println!();
@@ -280,12 +283,12 @@ fn demonstrate_multiple_patterns() {
     // Matching ranges with ..=
     println!("   Matching ranges with ..=:");
     let x = 5;
-    
+
     match x {
         1..=5 => println!("   {} is in range 1 through 5", x),
         _ => println!("   {} is something else", x),
     }
-    
+
     // Ranges work with char too
     let letter = 'c';
     match letter {
